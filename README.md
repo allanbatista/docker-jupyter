@@ -11,6 +11,11 @@ This container image is simple and easy to use.
 
     PASSWORD=password
 
+### authentication google cloud sdk
+
+    GOOGLE_CLOUD_SDK_KEY_JSON
+    GOOGLE_APPLICATION_ACCOUNT
+
 ## Execute
 
     $ docker run --rm -p 8888:8888 -e PASSWORD=my_password allanbatista/jupyter notebook

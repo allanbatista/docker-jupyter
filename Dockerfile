@@ -6,10 +6,15 @@ LABEL mantainer="Allan Batista <allan@allanbatista.com.br>"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM linux
 
+# Jupyter
 ENV PASSWORD=password
 ENV JUPYTER_HOME=/jupyter/notebook
 ENV JUPYTER_CONFIG=/jupyter_notebook_config.py
-ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
+
+# google cloud sdk
+ENV PATH=$PATH:/usr/local/gcloud/google-cloud-sdk/bin
+ENV GOOGLE_APPLICATION_CREDENTIALS_JSON=
+ENV GOOGLE_APPLICATION_ACCOUNT=
 
 # language
 ENV LANGUAGE en_US.UTF-8
