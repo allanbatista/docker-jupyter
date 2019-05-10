@@ -13,8 +13,9 @@ This container image is simple and easy to use.
 
 ## Execute
 
-    $ docker run --rm -p 8000:8000 -e PASSWORD=my_password allanbatista/jupyter notebook
+    $ docker run --rm -p 8888:8888 -e PASSWORD=my_password allanbatista/jupyter notebook
 
 **data dir**
 
-    /jupyter/notebook
+    /jupyter/notebook jupyter home
+    /root admin home

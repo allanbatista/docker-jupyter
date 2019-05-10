@@ -6,7 +6,7 @@ if [ -n "$PASSWORD" ]; then
 fi
 
 if [ $1 == "notebook" ]; then
-  jupyter notebook --notebook-dir /jupyter/notebook --port 8888 --ip 0.0.0.0 --config=$JUPYTER_CONFIG --allow-root -y
+  jupyter notebook --notebook-dir $JUPYTER_HOME --port 8888 --ip 0.0.0.0 --config=$JUPYTER_CONFIG --allow-root -y
 else
   exec $@
 fi
