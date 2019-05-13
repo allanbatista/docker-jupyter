@@ -1,16 +1,18 @@
 #!/bin/bash
 
 if [ -n "$PASSWORD" ]; then
-  echo "c.NotebookApp.password=u'$(python -c "from notebook.auth import passwd; print(passwd('${PASSWORD}'))")'" >> $JUPYTER_CONFIG
+  echo "c.NotebookApp.password=u'$(python3 -c "from notebook.auth import passwd; print(passwd('${PASSWORD}'))")'" >> $JUPYTER_CONFIG
   echo "c.NotebookApp.password_required=True" >> $JUPYTER_CONFIG
 fi
 
-if [-n "$GOOGLE_APPLICATION_CREDENTIALS_JSON"]; then
+if [ -n "$GOOGLE_APPLICATION_CREDENTIALS_JSON" ]; then
   export GOOGLE_APPLICATION_CREDENTIALS=/root/google_key.json
   echo $GOOGLE_APPLICATION_CREDENTIALS_JSON > $GOOGLE_APPLICATION_CREDENTIALS
 
-  if [-n "$GOOGLE_APPLICATION_ACCOUNT"]; then
-    gcloud auth activate-service-account --account $GOOGLE_APPLICATION_ACCOUNT --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+  if [ -n "$GOOGLE_APPLICATION_ACCOUNT" ]; then
+    if [ -n "$GOOGLE_APPLICATION_PROJECT" ]; then
+      gcloud auth activate-service-account --account $GOOGLE_APPLICATION_ACCOUNT --key-file=$GOOGLE_APPLICATION_CREDENTIALS --project=$GOOGLE_APPLICATION_PROJECT
+    fi
   fi
 fi
 
