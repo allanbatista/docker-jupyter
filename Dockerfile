@@ -50,6 +50,8 @@ RUN apt-get update -y \
                         libssl-dev \
                         libffi-dev \
                         libpq-dev \
+                        texlive-xetex \
+                        pandoc \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen \
     && apt-get clean
 
@@ -74,7 +76,8 @@ RUN pip3 install jupyter \
 		google-cloud-storage \
 		google-cloud-bigtable \
 		sasl thrift thrift-sasl PyHive \
-		pyhs2
+		pyhs2 \
+                nbconvert
 
 RUN ln -sf $(which pip3) /usr/bin/pip \
     && ln -sf $(which python3) /usr/bin/python
