@@ -59,22 +59,26 @@ RUN echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -
     apt-get install google-cloud-sdk -y
 
 RUN pip3 install jupyter \
-                boto3 \
-                pandas \
-                numpy \
-                matplotlib \
-                sklearn \
-                tensorflow \
-                psycopg2 \
-		pymongo \
-		mysql \
-		redis \
-		google-cloud-storage \
-		google-cloud-bigquery \
-		google-cloud-storage \
-		google-cloud-bigtable \
-		sasl thrift thrift-sasl PyHive \
-		pyhs2
+                 boto3 \
+                 pandas \
+                 numpy \
+                 matplotlib \
+                 sklearn \
+                 tensorflow \
+                 psycopg2 \
+                 pymongo \
+                 mysql \
+                 redis \
+                 google-cloud-storage \
+                 google-cloud-bigquery \
+                 google-cloud-storage \
+                 google-cloud-bigtable \
+                 sasl thrift thrift-sasl PyHive \
+                 pyhs2 \
+                 iplotter \
+                 unidecode \
+                 plotly \
+                 awscli
 
 RUN ln -sf $(which pip3) /usr/bin/pip \
     && ln -sf $(which python3) /usr/bin/python
