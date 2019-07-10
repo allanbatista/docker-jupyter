@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM nvidia/cuda:10.0-base-ubuntu18.04
 
 LABEL mantainer="Allan Batista <allan@allanbatista.com.br>"
 
@@ -64,7 +64,7 @@ RUN pip3 install jupyter \
                  numpy \
                  matplotlib \
                  sklearn \
-                 tensorflow \
+                 tensorflow-gpu \
                  psycopg2 \
                  pymongo \
                  mysql \
