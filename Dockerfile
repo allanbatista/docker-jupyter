@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM tensorflow/tensorflow:latest-gpu-py3-jupyter
 
 LABEL mantainer="Allan Batista <allan@allanbatista.com.br>"
 
@@ -32,7 +32,6 @@ RUN touch $JUPYTER_CONFIG
 RUN apt-get update -y \
     && apt-get install -y \
                         python2.7-minimal \
-                        python3 \
                         python3-pip \
                         python3-dev \
                         python3-setuptools \
@@ -64,7 +63,6 @@ RUN pip3 install jupyter \
                  numpy \
                  matplotlib \
                  sklearn \
-                 tensorflow \
                  psycopg2 \
                  pymongo \
                  mysql \
