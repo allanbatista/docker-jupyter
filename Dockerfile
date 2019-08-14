@@ -49,6 +49,7 @@ RUN apt-get update -y \
                         libssl-dev \
                         libffi-dev \
                         libpq-dev \
+                        graphviz \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen \
     && apt-get clean
 
@@ -76,7 +77,9 @@ RUN pip3 install jupyter \
                  iplotter \
                  unidecode \
                  plotly \
-                 awscli
+                 awscli \
+                 pydot \
+                 graphviz
 
 RUN ln -sf $(which pip3) /usr/bin/pip \
     && ln -sf $(which python3) /usr/bin/python
