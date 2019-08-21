@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:latest-gpu-py3-jupyter
+FROM tensorflow/tensorflow:1.14.0-gpu-py3-jupyter
 
 LABEL mantainer="Allan Batista <allan@allanbatista.com.br>"
 
@@ -50,6 +50,7 @@ RUN apt-get update -y \
                         libffi-dev \
                         libpq-dev \
                         graphviz \
+                        cmake \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen \
     && apt-get clean
 
@@ -79,10 +80,20 @@ RUN pip3 install jupyter \
                  plotly \
                  awscli \
                  pydot \
-                 graphviz
+                 graphviz \
+                 nltk
 
 RUN ln -sf $(which pip3) /usr/bin/pip \
     && ln -sf $(which python3) /usr/bin/python
+
+
+RUN cd /tmp && \
+    git clone https://github.com/facebookresearch/fastText.git && \
+    cd fastText && \
+    mkdir build && cd build && cmake .. && \
+    make && make install && \
+    cd ~ && rm -Rf /tmp/fastText
+
 
 EXPOSE 8888
 
