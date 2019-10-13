@@ -29,6 +29,8 @@ ENV LC_MESSAGES en_US.UTF-8
 RUN mkdir $JUPYTER_HOME -p
 RUN touch $JUPYTER_CONFIG
 
+WORKDIR ${JUPYTER_HOME}
+
 RUN apt-get update -y \
     && apt-get install -y \
                         python2.7-minimal \
@@ -81,7 +83,8 @@ RUN pip3 install jupyter \
                  awscli \
                  pydot \
                  graphviz \
-                 nltk
+                 nltk \
+                 opencv-python
 
 RUN ln -sf $(which pip3) /usr/bin/pip \
     && ln -sf $(which python3) /usr/bin/python
