@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:1.14.0-gpu-py3-jupyter
+FROM tensorflow/tensorflow:1.15.0-gpu-py3-jupyter
 
 LABEL mantainer="Allan Batista <allan@allanbatista.com.br>"
 
@@ -84,11 +84,11 @@ RUN pip3 install jupyter \
                  pydot \
                  graphviz \
                  nltk \
-                 opencv-python
+                 opencv-python \
+                 scikit-image
 
 RUN ln -sf $(which pip3) /usr/bin/pip \
     && ln -sf $(which python3) /usr/bin/python
-
 
 RUN cd /tmp && \
     git clone https://github.com/facebookresearch/fastText.git && \
@@ -96,7 +96,6 @@ RUN cd /tmp && \
     mkdir build && cd build && cmake .. && \
     make && make install && \
     cd ~ && rm -Rf /tmp/fastText
-
 
 EXPOSE 8888
 
