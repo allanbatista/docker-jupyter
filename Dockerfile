@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:1.15.0-gpu-py3-jupyter
+FROM tensorflow/tensorflow:2.1.0-gpu-py3-jupyter
 
 LABEL mantainer="Allan Batista <allan@allanbatista.com.br>"
 
@@ -28,6 +28,8 @@ ENV LC_MESSAGES en_US.UTF-8
 
 RUN mkdir $JUPYTER_HOME -p
 RUN touch $JUPYTER_CONFIG
+
+SHELL ["/bin/bash", "-c"]
 
 WORKDIR ${JUPYTER_HOME}
 
@@ -85,17 +87,11 @@ RUN pip3 install jupyter \
                  graphviz \
                  nltk \
                  opencv-python \
-                 scikit-image
+                 scikit-image \
+                 jupyterlab
 
 RUN ln -sf $(which pip3) /usr/bin/pip \
     && ln -sf $(which python3) /usr/bin/python
-
-RUN cd /tmp && \
-    git clone https://github.com/facebookresearch/fastText.git && \
-    cd fastText && \
-    mkdir build && cd build && cmake .. && \
-    make && make install && \
-    cd ~ && rm -Rf /tmp/fastText
 
 EXPOSE 8888
 

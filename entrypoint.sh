@@ -1,13 +1,15 @@
 #!/bin/bash
 
 if [ -n "$PASSWORD" ]; then
+  echo "creating password"
   echo "c.NotebookApp.password=u'$(python3 -c "from notebook.auth import passwd; print(passwd('${PASSWORD}'))")'" >> $JUPYTER_CONFIG
   echo "c.NotebookApp.password_required=True" >> $JUPYTER_CONFIG
 fi
 
-if [ -n "$GOOGLE_APPLICATION_CREDENTIALS_JSON" ]; then
+if [ -n "$GOOGLE_APPLICATION_CREDENTIALS_BASE64" ]; then
+  echo "creating google cloud credentials"
   export GOOGLE_APPLICATION_CREDENTIALS=/root/google_key.json
-  echo $GOOGLE_APPLICATION_CREDENTIALS_JSON > $GOOGLE_APPLICATION_CREDENTIALS
+  echo $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 --decode >  $GOOGLE_APPLICATION_CREDENTIALS
 
   if [ -n "$GOOGLE_APPLICATION_ACCOUNT" ]; then
     if [ -n "$GOOGLE_APPLICATION_PROJECT" ]; then
